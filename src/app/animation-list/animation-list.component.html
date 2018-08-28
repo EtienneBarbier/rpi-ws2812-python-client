@@ -1,0 +1,10 @@
+<p>
+  animation-list works!
+</p>
+<mat-form-field>
+  <mat-select placeholder="Choosing animation">
+    <mat-option *ngFor="let animation of animations" [value]="animation.value">
+      {{animation.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

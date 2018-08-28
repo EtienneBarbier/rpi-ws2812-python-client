@@ -1,0 +1,7 @@
+#color-picker-container {
+  max-width: 320px;
+  margin: 40px auto;
+}
+.iro__marker__outer{
+  fill: white;
+}
