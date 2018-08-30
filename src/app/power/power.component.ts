@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PowerComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,public snackBar: MatSnackBar) { }
+
 
   ngOnInit() {
   }
@@ -20,7 +22,9 @@ export class PowerComponent implements OnInit {
     if(!this.mySwitch){
       this.httpClient.get('http://127.0.0.1:5000/start').subscribe(
         () => {
-              console.log('Start ok !');
+              this.snackBar.open("LED On", "Ok", {
+                duration: 2000,
+              });
         },
         (error) => {
           console.log('Erreur ! : ' + error);
@@ -29,7 +33,9 @@ export class PowerComponent implements OnInit {
     }else{
       this.httpClient.get('http://127.0.0.1:5000/stop').subscribe(
         () => {
-              console.log('Stop ok !');
+              this.snackBar.open("LED Off", "Ok", {
+                duration: 2000,
+              });
         },
         (error) => {
           console.log('Erreur ! : ' + error);

@@ -39,6 +39,7 @@ export class WheelColorPickerComponent implements OnInit {
       var seconde_circle = document.getElementsByClassName("iro__marker__inner").item(1)
       seconde_circle.setAttribute("fill",'white');
       seconde_circle.setAttribute("stroke", 'black');
+      var svg_layout = document.getElementById("color-picker-container").childNodes.item(0).setAttribute("style","touch-action: inherit; display: block;");
     });
   }
 

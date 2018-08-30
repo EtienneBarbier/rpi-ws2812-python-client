@@ -5,3 +5,7 @@
 .power-spacer{
   flex: 1 1 auto;
 }
+
+.panel-mat-tab{
+  margin: 30px;
+}
