@@ -1,13 +1,10 @@
-<p>
-  animation-list works!
-</p>
-<mat-form-field>
+<!-- <mat-form-field>
   <mat-select placeholder="Choosing animation">
     <mat-option *ngFor="let animation of animations" [value]="animation.value">
       {{animation.viewValue}}
     </mat-option>
   </mat-select>
-</mat-form-field>
+</mat-form-field> -->
 
 <div fxLayout='row wrap' fxLayoutAlign="start stretch" class="animation-card-list">
   <div fxFlex="25" *ngFor="let animation of animations">
@@ -17,8 +14,7 @@
       </mat-card-header>
       <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
       <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
+        <button mat-flat-button (click)="OnPlayButtonClick($event,animation)">Play</button>
       </mat-card-actions>
     </mat-card>
   </div>

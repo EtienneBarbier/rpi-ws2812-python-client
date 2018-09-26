@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 export interface Animation {
   value: string;
@@ -13,15 +15,26 @@ export interface Animation {
 export class AnimationListComponent implements OnInit {
 
   animations: Animation[] = [
-    {value: 'setTheaterChaseRainbow', viewValue: 'Theater Chase Rainbow'},
-    {value: 'setRainbow', viewValue: 'Rainbow'},
-    {value: 'setRainbowCycle', viewValue: 'Rainbow Cycle'},
-    {value: 'setAll', viewValue: 'All'},
-    {value: 'setOff', viewValue: 'Off'}
+    {value: 'theater_chase_rainbow', viewValue: 'Theater Chase Rainbow'},
+    {value: 'rainbow', viewValue: 'Rainbow'},
+    {value: 'rainbow_cycle', viewValue: 'Rainbow Cycle'},
+    {value: 'all', viewValue: 'All'},
   ];
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
   }
 
+  OnPlayButtonClick(event,animation){
+    console.log(animation);
+
+    this.httpClient.get('http://127.0.0.1:5000/annimation?id='+animation.value).subscribe(
+      () => {
+
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+  }
 }

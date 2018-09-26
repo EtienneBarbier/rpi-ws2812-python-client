@@ -38,10 +38,28 @@ export class WheelColorPickerComponent implements OnInit {
 
 
   ngAfterViewInit(){
-    demoColorPicker.on("color:change", function(color, changes) {
+    // demoColorPicker.on("color:change", function(color, changes, that=this) {
+    //   // Log the color's hex RGB value to the dev console
+    //   console.log(color.hexString);
+    //   console.log(this);
+    //   // that.httpClient.get('http://127.0.0.1:5000/color?red=255').subscribe(
+    //   //   () => {
+    //   //   },
+    //   //   (error) => {
+    //   //     console.log('Erreur ! : ' + error);
+    //   //   }
+    //   // );
+    //   // If the "H" channel has changed, log the color's HSV value too
+    //   if (changes.h) {
+    //     console.log(color.hsv);
+    //   }
+    // });
+
+    demoColorPicker.on("color:change", (color, changes) => {
       // Log the color's hex RGB value to the dev console
       console.log(color.hexString);
-      that.httpClient.get('http://127.0.0.1:5000/color?red=255').subscribe(
+      console.log(color.rgb.r);
+      this.httpClient.get('http://127.0.0.1:5000/color?red='+color.rgb.r+'&blue='+color.rgb.b+'&green='+color.rgb.g).subscribe(
         () => {
         },
         (error) => {
