@@ -20,7 +20,7 @@ export class PowerComponent implements OnInit {
 
   OnButtonClick(event){
     if(!this.mySwitch){
-      this.httpClient.get('http://127.0.0.1:5000/start').subscribe(
+      this.httpClient.get('http://127.0.0.1:5000/action?power=start').subscribe(
         () => {
               this.snackBar.open("LED On", "Ok", {
                 duration: 2000,
@@ -31,7 +31,7 @@ export class PowerComponent implements OnInit {
         }
       );
     }else{
-      this.httpClient.get('http://127.0.0.1:5000/stop').subscribe(
+      this.httpClient.get('http://127.0.0.1:5000/action?power=stop').subscribe(
         () => {
               this.snackBar.open("LED Off", "Ok", {
                 duration: 2000,

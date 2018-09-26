@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import iro from '@jaames/iro';
-import { Inject }  from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+
+declare var jquery:any;
+declare var $ :any;
 
 var demoColorPicker: any;
 
@@ -12,34 +14,19 @@ var demoColorPicker: any;
 })
 
 export class WheelColorPickerComponent implements OnInit {
-  constructor(@Inject(DOCUMENT) document) {
-
+  constructor(private httpClient: HttpClient) {
     demoColorPicker = new iro.ColorPicker("#color-picker-container", {
       color: {r: 255, g: 0, b: 0},
       borderWidth: 0,
       sliderMargin: 24,
       sliderHeight: 24,
     });
-
-    demoColorPicker.on("color:change", function(color, changes) {
-      // Log the color's hex RGB value to the dev console
-      console.log(color.hexString);
-      // If the "H" channel has changed, log the color's HSV value too
-      if (changes.h) {
-        console.log(color.hsv);
-      }
-    });
-
     demoColorPicker.on("mount", function() {
-      document.getElementsByClassName("iro__marker__outer").item(1).remove()
-      document.getElementsByClassName("iro__marker__outer").item(0).remove()
-      var first_circle = document.getElementsByClassName("iro__marker__inner").item(0)
-      first_circle.setAttribute("fill",'white');
-      first_circle.setAttribute("stroke", 'black');
-      var seconde_circle = document.getElementsByClassName("iro__marker__inner").item(1)
-      seconde_circle.setAttribute("fill",'white');
-      seconde_circle.setAttribute("stroke", 'black');
-      var svg_layout = document.getElementById("color-picker-container").childNodes.item(0).setAttribute("style","touch-action: inherit; display: block;");
+      $(".iro__marker__outer").remove();
+      $(".iro__marker__inner").attr("fill",'white');
+      $(".iro__marker__inner").attr("stroke", 'black');
+      $("#color-picker-container").children().first().attr("style","touch-action: inherit; display: block;");
+      // var svg_layout = document.getElementById("color-picker-container").childNodes.item(0).setAttribute("style","touch-action: inherit; display: block;");
     });
   }
 
@@ -49,7 +36,23 @@ export class WheelColorPickerComponent implements OnInit {
 
   }
 
+
   ngAfterViewInit(){
+    demoColorPicker.on("color:change", function(color, changes) {
+      // Log the color's hex RGB value to the dev console
+      console.log(color.hexString);
+      that.httpClient.get('http://127.0.0.1:5000/color?red=255').subscribe(
+        () => {
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+      // If the "H" channel has changed, log the color's HSV value too
+      if (changes.h) {
+        console.log(color.hsv);
+      }
+    });
 
   }
 
