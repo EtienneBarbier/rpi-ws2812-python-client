@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
+  import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatSlideToggleModule, MatFormFieldModule, MatOptionModule,
-  MatSelectModule, MatTabsModule, MatSidenavModule, MatToolbarModule, MatDividerModule,
+import { MatButtonModule, MatSlideToggleModule, MatSliderModule, MatFormFieldModule, MatOptionModule,
+  MatSelectModule, MatTabsModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatIconModule,
   MatSnackBarModule, MatCardModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { AnimationListComponent } from './animation-list/animation-list.component';
 import { PowerComponent } from './power/power.component';
 import { WheelColorPickerComponent } from './wheel-color-picker/wheel-color-picker.component';
+import { BrightnessSelectorComponent } from './brightness-selector/brightness-selector.component';
 
 
 @NgModule({
@@ -20,13 +21,14 @@ import { WheelColorPickerComponent } from './wheel-color-picker/wheel-color-pick
     AppComponent,
     AnimationListComponent,
     PowerComponent,
-    WheelColorPickerComponent
+    WheelColorPickerComponent,
+    BrightnessSelectorComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatSlideToggleModule, MatFormFieldModule, MatOptionModule, MatSelectModule,
-    MatTabsModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatSnackBarModule,
+    MatButtonModule, MatSlideToggleModule, MatSliderModule, MatFormFieldModule, MatOptionModule, MatSelectModule,
+    MatTabsModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatSnackBarModule, MatIconModule,
     MatCardModule,
     HttpClientModule,
     FormsModule,

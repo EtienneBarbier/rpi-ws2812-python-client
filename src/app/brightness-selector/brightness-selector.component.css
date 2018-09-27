@@ -1,0 +1,5 @@
+/** No CSS for this example */
+mat-slider {
+  width: 30%;
+  max-width: 200px;
+}
