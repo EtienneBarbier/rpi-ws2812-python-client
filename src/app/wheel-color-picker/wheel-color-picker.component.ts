@@ -20,9 +20,11 @@ export class WheelColorPickerComponent implements OnInit {
       borderWidth: 0,
       sliderMargin: 24,
       sliderHeight: 24,
+      removeSlider: true,
     });
     demoColorPicker.on("mount", function() {
       $(".iro__marker__outer").remove();
+      // $(".iro__slider").attr("style","display: none; visibility: hidden; pointer-events: none;");
       $(".iro__marker__inner").attr("fill",'white');
       $(".iro__marker__inner").attr("stroke", 'black');
       $("#color-picker-container").children().first().attr("style","touch-action: inherit; display: block;");
@@ -58,7 +60,7 @@ export class WheelColorPickerComponent implements OnInit {
     demoColorPicker.on("color:change", (color, changes) => {
       // Log the color's hex RGB value to the dev console
       console.log(color.hexString);
-      console.log(color.rgb.r);
+      console.log(color.rgb);
       this.httpClient.get('http://127.0.0.1:5000/color?red='+color.rgb.r+'&blue='+color.rgb.b+'&green='+color.rgb.g).subscribe(
         () => {
         },
