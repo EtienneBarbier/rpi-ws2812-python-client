@@ -10,12 +10,27 @@ import { MatSnackBar } from '@angular/material';
 })
 export class PowerComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient,public snackBar: MatSnackBar) { }
+  constructor(private httpClient: HttpClient,public snackBar: MatSnackBar) {
+
+  }
+  mySwitch: boolean = false;
 
 
   ngOnInit() {
+    this.httpClient.get('http://127.0.0.1:5000/state').subscribe(
+      (result) => {
+        console.log(result);
+        if(result.state == 'stopped'){
+          this.mySwitch = false;
+        }else{
+          this.mySwitch = true;
+        }
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
   }
-  mySwitch: boolean = false;
 
 
   OnButtonClick(event){

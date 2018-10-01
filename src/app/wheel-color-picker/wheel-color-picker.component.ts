@@ -7,6 +7,8 @@ declare var $ :any;
 
 var demoColorPicker: any;
 
+var first_request: boolean;
+
 @Component({
   selector: 'app-wheel-color-picker',
   templateUrl: './wheel-color-picker.component.html',
@@ -15,6 +17,7 @@ var demoColorPicker: any;
 
 export class WheelColorPickerComponent implements OnInit {
   constructor(private httpClient: HttpClient) {
+    first_request = true;
     demoColorPicker = new iro.ColorPicker("#color-picker-container", {
       color: {r: 255, g: 0, b: 0},
       borderWidth: 0,
@@ -58,6 +61,11 @@ export class WheelColorPickerComponent implements OnInit {
     // });
 
     demoColorPicker.on("color:change", (color, changes) => {
+      if(first_request){
+        first_request = false;
+        return;
+      }
+
       // Log the color's hex RGB value to the dev console
       console.log(color.hexString);
       console.log(color.rgb);
