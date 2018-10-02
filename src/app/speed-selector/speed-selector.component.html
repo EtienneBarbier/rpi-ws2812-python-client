@@ -1,0 +1,10 @@
+<span><mat-icon>directions_walk</mat-icon> <mat-slider
+  value = 100
+  [(ngModel)]="speed"
+  (input)="OnChange($event)"
+  min="-100"
+  max="100"
+  tickInterval="100"
+  ></mat-slider>
+<mat-icon>directions_run</mat-icon>
+</span>

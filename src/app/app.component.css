@@ -9,3 +9,18 @@
 .panel-mat-tab{
   margin: 30px;
 }
+
+.panel-mat-tab{
+  text-align: center;
+  /* margin-left: 0px;
+  margin-right: 0px; */
+}
+
+app-animation-list{
+  margin: auto !important;
+}
+
+
+app-speed-selector{
+  margin: -30px;
+}

@@ -14,6 +14,7 @@ import { AnimationListComponent } from './animation-list/animation-list.componen
 import { PowerComponent } from './power/power.component';
 import { WheelColorPickerComponent } from './wheel-color-picker/wheel-color-picker.component';
 import { BrightnessSelectorComponent } from './brightness-selector/brightness-selector.component';
+import { SpeedSelectorComponent } from './speed-selector/speed-selector.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { BrightnessSelectorComponent } from './brightness-selector/brightness-se
     AnimationListComponent,
     PowerComponent,
     WheelColorPickerComponent,
-    BrightnessSelectorComponent
+    BrightnessSelectorComponent,
+    SpeedSelectorComponent
   ],
   imports: [
     BrowserModule,
