@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { environment } from '../../environments/environment';
+
 
 
 @Component({
@@ -17,7 +19,7 @@ export class PowerComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpClient.get('http://127.0.0.1:5000/state').subscribe(
+    this.httpClient.get(environment.API_URL+'/state').subscribe(
       (result) => {
         console.log(result["power"]);
         if(result["power"] == 'stopped'){
@@ -35,7 +37,7 @@ export class PowerComponent implements OnInit {
 
   OnButtonClick(event){
     if(this.mySwitch){
-      this.httpClient.post('http://127.0.0.1:5000/action',{ power: 'start' }).subscribe(
+      this.httpClient.post(environment.API_URL+'/action',{ power: 'start' }).subscribe(
         () => {
               this.snackBar.open("LED On", "Ok", {
                 duration: 2000,
@@ -46,7 +48,7 @@ export class PowerComponent implements OnInit {
         }
       );
     }else{
-      this.httpClient.post('http://127.0.0.1:5000/action',{ power: 'stop' }).subscribe(
+      this.httpClient.post(environment.API_URL+'/action',{ power: 'stop' }).subscribe(
         () => {
               this.snackBar.open("LED Off", "Ok", {
                 duration: 2000,

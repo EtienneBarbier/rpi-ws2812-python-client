@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import iro from '@jaames/iro';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
 
 declare var jquery:any;
 declare var $ :any;
@@ -27,7 +29,7 @@ export class WheelColorPickerComponent implements OnInit {
     });
     demoColorPicker.on("mount", () => {
       var color: any = [255,255,255];
-      this.httpClient.get('http://127.0.0.1:5000/settings').subscribe(
+      this.httpClient.get(environment.API_URL+'/settings').subscribe(
         (result) => {
           color = result["color"];
           demoColorPicker.color.rgb =  { r: color[0], g: color[1], b: color[2] };
@@ -58,7 +60,7 @@ export class WheelColorPickerComponent implements OnInit {
       }
 
       // Log the color's hex RGB value to the dev console
-      this.httpClient.get('http://127.0.0.1:5000/color?red='+color.rgb.r+'&blue='+color.rgb.b+'&green='+color.rgb.g).subscribe(
+      this.httpClient.get(environment.API_URL+'/color?red='+color.rgb.r+'&blue='+color.rgb.b+'&green='+color.rgb.g).subscribe(
         () => {
         },
         (error) => {

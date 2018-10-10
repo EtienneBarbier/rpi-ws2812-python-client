@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
 
 
 export interface Animation {
@@ -28,7 +30,7 @@ export class AnimationListComponent implements OnInit {
   OnPlayButtonClick(event,animation){
     console.log(animation);
 
-    this.httpClient.get('http://127.0.0.1:5000/annimation?id='+animation.value).subscribe(
+    this.httpClient.get(environment.API_URL+'/annimation?id='+animation.value).subscribe(
       () => {
 
       },

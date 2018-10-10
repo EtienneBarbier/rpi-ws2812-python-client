@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
 
 @Component({
   selector: 'app-brightness-selector',
@@ -18,7 +20,7 @@ export class BrightnessSelectorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpClient.get('http://127.0.0.1:5000/settings').subscribe(
+    this.httpClient.get(environment.API_URL+'/settings').subscribe(
       (result) => {
         this.value = result["brightness"]*100;
       },
@@ -30,7 +32,7 @@ export class BrightnessSelectorComponent implements OnInit {
 
 
   OnChange(event){
-    this.httpClient.post('http://127.0.0.1:5000/settings', { brightness: (event.value/100) }).subscribe(
+    this.httpClient.post(environment.API_URL+'/settings', { brightness: (event.value/100) }).subscribe(
       () => {
       },
       (error) => {
