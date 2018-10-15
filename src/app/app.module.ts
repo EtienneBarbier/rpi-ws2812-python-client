@@ -1,4 +1,4 @@
-  import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatSlideToggleModule, MatSliderModule, MatFormFieldModule, MatOptionModule,
@@ -15,6 +15,7 @@ import { PowerComponent } from './power/power.component';
 import { WheelColorPickerComponent } from './wheel-color-picker/wheel-color-picker.component';
 import { BrightnessSelectorComponent } from './brightness-selector/brightness-selector.component';
 import { SpeedSelectorComponent } from './speed-selector/speed-selector.component';
+import { ReduceApiCallsDirective } from './reduce-api-calls.directive';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { SpeedSelectorComponent } from './speed-selector/speed-selector.componen
     PowerComponent,
     WheelColorPickerComponent,
     BrightnessSelectorComponent,
-    SpeedSelectorComponent
+    SpeedSelectorComponent,
+    ReduceApiCallsDirective
   ],
   imports: [
     BrowserModule,

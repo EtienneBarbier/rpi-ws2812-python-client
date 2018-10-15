@@ -1,7 +1,8 @@
 <mat-icon>wb_sunny</mat-icon> <mat-slider
+  appReduceApiCalls
   thumbLabel
   [displayWith]="formatLabel"
   value = 100
   [(ngModel)]="value"
-  (input)="OnChange($event)" 
+  (auditInput)="OnInput($event)"
   ></mat-slider>

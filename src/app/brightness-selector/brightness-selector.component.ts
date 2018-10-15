@@ -31,7 +31,7 @@ export class BrightnessSelectorComponent implements OnInit {
   }
 
 
-  OnChange(event){
+  OnInput(event){
     this.httpClient.post(environment.API_URL+'/settings', { brightness: (event.value/100) }).subscribe(
       () => {
       },
@@ -40,5 +40,4 @@ export class BrightnessSelectorComponent implements OnInit {
       }
     );
   }
-
 }
