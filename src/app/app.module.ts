@@ -16,6 +16,7 @@ import { WheelColorPickerComponent } from './wheel-color-picker/wheel-color-pick
 import { BrightnessSelectorComponent } from './brightness-selector/brightness-selector.component';
 import { SpeedSelectorComponent } from './speed-selector/speed-selector.component';
 import { ReduceApiCallsDirective } from './reduce-api-calls.directive';
+import { ColorSelectorComponent } from './color-selector/color-selector.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ReduceApiCallsDirective } from './reduce-api-calls.directive';
     WheelColorPickerComponent,
     BrightnessSelectorComponent,
     SpeedSelectorComponent,
-    ReduceApiCallsDirective
+    ReduceApiCallsDirective,
+    ColorSelectorComponent
   ],
   imports: [
     BrowserModule,

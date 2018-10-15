@@ -12,16 +12,15 @@ var demoColorPicker: any;
 var first_request: boolean;
 
 @Component({
-  selector: 'app-wheel-color-picker',
-  template: '<div id="color-selector"></div>',
-  styles: ['#color-picker-container { max-width: 320px; margin: 40px auto; }',
-  '.iro__marker__outer { fill: white; }']
+  selector: 'app-color-selector',
+  templateUrl: './color-selector.component.html',
+  styleUrls: ['./color-selector.component.css']
 })
+export class ColorSelectorComponent implements OnInit {
 
-export class WheelColorPickerComponent implements OnInit {
   constructor(private httpClient: HttpClient) {
     first_request = true;
-    demoColorPicker = new iro.ColorPicker("#color-picker-container", {
+    demoColorPicker = new iro.ColorPicker("#color-selector", {
       color: {r: 255, g: 255, b: 255},
       borderWidth: 0,
       sliderMargin: 24,
@@ -42,14 +41,15 @@ export class WheelColorPickerComponent implements OnInit {
       $(".iro__marker__outer").remove();
       // $(".iro__slider").attr("style","display: none; visibility: hidden; pointer-events: none;");
       $(".iro__marker__inner").attr("fill",'white');
-      $(".iro__marker__inner").attr("stroke", 'black');
-      $("#color-picker-container").children().first().attr("style","touch-action: inherit; display: block;");
+      $(".iro__marker__inner").attr("fill",'white');
+      $(".iro__slider").attr("display",'none');
+      $(".iro__slider").attr("visibility", 'hidden');
+      $("#color-selector").children().first().attr("style","touch-action: inherit; display: block;");
       // var svg_layout = document.getElementById("color-picker-container").childNodes.item(0).setAttribute("style","touch-action: inherit; display: block;");
     });
   }
 
   ngOnInit() {
-
   }
 
 
