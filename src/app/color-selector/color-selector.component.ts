@@ -7,8 +7,6 @@ import { environment } from '../../environments/environment';
 declare var jquery:any;
 declare var $ :any;
 
-var demoColorPicker: any;
-
 var first_request: boolean;
 
 @Component({
@@ -18,35 +16,27 @@ var first_request: boolean;
 })
 export class ColorSelectorComponent implements OnInit {
 
+  color: any = [255,255,255];
+
   constructor(private httpClient: HttpClient) {
-    first_request = true;
-    demoColorPicker = new iro.ColorPicker("#color-selector", {
-      color: {r: 255, g: 255, b: 255},
-      borderWidth: 0,
-      sliderMargin: 24,
-      sliderHeight: 24,
-      removeSlider: true,
-    });
-    demoColorPicker.on("mount", () => {
-      var color: any = [255,255,255];
-      this.httpClient.get(environment.API_URL+'/settings').subscribe(
-        (result) => {
-          color = result["color"];
-          demoColorPicker.color.rgb =  { r: color[0], g: color[1], b: color[2] };
-        },
-        (error) => {
-          console.log('Erreur ! : ' + error);
-        }
-      );
-      $(".iro__marker__outer").remove();
-      // $(".iro__slider").attr("style","display: none; visibility: hidden; pointer-events: none;");
-      $(".iro__marker__inner").attr("fill",'white');
-      $(".iro__marker__inner").attr("fill",'white');
-      $(".iro__slider").attr("display",'none');
-      $(".iro__slider").attr("visibility", 'hidden');
-      $("#color-selector").children().first().attr("style","touch-action: inherit; display: block;");
-      // var svg_layout = document.getElementById("color-picker-container").childNodes.item(0).setAttribute("style","touch-action: inherit; display: block;");
-    });
+    this.httpClient.get(environment.API_URL+'/settings').subscribe(
+      (result) => {
+        this.color = result["color"];
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+  }
+
+  onColorChange(color) {
+    this.httpClient.get(environment.API_URL+'/color?red='+color.rgb.r+'&blue='+color.rgb.b+'&green='+color.rgb.g).subscribe(
+      () => {
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
   }
 
   ngOnInit() {
@@ -54,20 +44,5 @@ export class ColorSelectorComponent implements OnInit {
 
 
   ngAfterViewInit(){
-    demoColorPicker.on("color:change", (color, changes) => {
-      if(first_request){
-        first_request = false;
-        return;
-      }
-
-      // Log the color's hex RGB value to the dev console
-      this.httpClient.get(environment.API_URL+'/color?red='+color.rgb.r+'&blue='+color.rgb.b+'&green='+color.rgb.g).subscribe(
-        () => {
-        },
-        (error) => {
-          console.log('Erreur ! : ' + error);
-        }
-      );
-    });
   }
 }

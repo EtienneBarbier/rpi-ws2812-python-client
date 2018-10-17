@@ -22,7 +22,7 @@ export class ReduceApiCallsDirective {
 
   ngOnInit() {
     this.subscription_inputs = this.inputs.pipe(
-      auditTime(333)
+      auditTime(300)
     ).subscribe(e => this.auditInput.emit(e));
     this.subscription_first_reset = this.first_reset.pipe(
       debounceTime(500)

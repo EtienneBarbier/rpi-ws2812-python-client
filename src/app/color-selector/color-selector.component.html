@@ -1,1 +1,7 @@
-<div id="color-selector"></div>
+<!-- <div id="color-selector"></div> -->
+<app-wheel-color-picker
+[color]="[0,255,255]"
+appReduceApiCalls
+[(ngModel)]="color"
+(auditInput)="onColorChange($event)"
+></app-wheel-color-picker>
