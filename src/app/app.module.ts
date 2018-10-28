@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatSlideToggleModule, MatSliderModule, MatFormFieldModule, MatOptionModule,
   MatSelectModule, MatTabsModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatIconModule,
@@ -18,6 +18,13 @@ import { SpeedSelectorComponent } from './speed-selector/speed-selector.componen
 import { ReduceApiCallsDirective } from './reduce-api-calls.directive';
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
 
+import { AppConfigService } from './app-config.service';
+
+const appInitializerFn = (appConfig: AppConfigService) => {
+  return () => {
+    return appConfig.loadAppConfig();
+  };
+};
 
 @NgModule({
   declarations: [
@@ -40,7 +47,15 @@ import { ColorSelectorComponent } from './color-selector/color-selector.componen
     FormsModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [
+    AppConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFn,
+      multi: true,
+      deps: [AppConfigService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

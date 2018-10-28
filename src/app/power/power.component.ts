@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../environments/environment';
+import { AppConfigService } from '../app-config.service'
 
 
 
@@ -12,14 +13,14 @@ import { environment } from '../../environments/environment';
 })
 export class PowerComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient,public snackBar: MatSnackBar) {
+  constructor(private httpClient: HttpClient,public snackBar: MatSnackBar, public appConfig: AppConfigService) {
 
   }
   mySwitch: boolean = false;
 
 
   ngOnInit() {
-    this.httpClient.get(environment.API_URL+'/state').subscribe(
+    this.httpClient.get(this.appConfig.getConfig().apiUrl+'/state').subscribe(
       (result) => {
         console.log(result["power"]);
         if(result["power"] == 'stopped'){
@@ -37,7 +38,7 @@ export class PowerComponent implements OnInit {
 
   OnButtonClick(event){
     if(this.mySwitch){
-      this.httpClient.post(environment.API_URL+'/action',{ power: 'start' }).subscribe(
+      this.httpClient.post(this.appConfig.getConfig().apiUrl+'/action',{ power: 'start' }).subscribe(
         () => {
               this.snackBar.open("LED On", "Ok", {
                 duration: 2000,
@@ -48,7 +49,7 @@ export class PowerComponent implements OnInit {
         }
       );
     }else{
-      this.httpClient.post(environment.API_URL+'/action',{ power: 'stop' }).subscribe(
+      this.httpClient.post(this.appConfig.getConfig().apiUrl+'/action',{ power: 'stop' }).subscribe(
         () => {
               this.snackBar.open("LED Off", "Ok", {
                 duration: 2000,

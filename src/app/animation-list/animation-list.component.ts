@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { AppConfigService } from '../app-config.service'
 
 
 
@@ -22,7 +23,7 @@ export class AnimationListComponent implements OnInit {
     {value: 'rainbow_cycle', viewValue: 'Rainbow Cycle'},
     {value: 'all', viewValue: 'All'},
   ];
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, public appConfig: AppConfigService) { }
 
   ngOnInit() {
   }
@@ -30,7 +31,7 @@ export class AnimationListComponent implements OnInit {
   OnPlayButtonClick(event,animation){
     console.log(animation);
 
-    this.httpClient.get(environment.API_URL+'/annimation?id='+animation.value).subscribe(
+    this.httpClient.get(this.appConfig.getConfig().apiUrl+'/annimation?id='+animation.value).subscribe(
       () => {
 
       },

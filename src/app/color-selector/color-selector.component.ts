@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import iro from '@jaames/iro';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { AppConfigService } from '../app-config.service'
 
 
 declare var jquery:any;
@@ -18,8 +19,8 @@ export class ColorSelectorComponent implements OnInit {
 
   color: any = [255,255,255];
 
-  constructor(private httpClient: HttpClient) {
-    this.httpClient.get(environment.API_URL+'/settings').subscribe(
+  constructor(private httpClient: HttpClient, public appConfig: AppConfigService) {
+    this.httpClient.get(this.appConfig.getConfig().apiUrl+'/settings').subscribe(
       (result) => {
         this.color = result["color"];
       },
@@ -30,7 +31,7 @@ export class ColorSelectorComponent implements OnInit {
   }
 
   onColorChange(color) {
-    this.httpClient.get(environment.API_URL+'/color?red='+color.rgb.r+'&blue='+color.rgb.b+'&green='+color.rgb.g).subscribe(
+    this.httpClient.get(this.appConfig.getConfig().apiUrl+'/color?red='+color.rgb.r+'&blue='+color.rgb.b+'&green='+color.rgb.g).subscribe(
       () => {
       },
       (error) => {

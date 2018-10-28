@@ -3,6 +3,8 @@ import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { auditTime } from 'rxjs/operators';
 import { debounceTime } from 'rxjs/operators';
+import { AppConfigService } from './app-config.service'
+
 
 @Directive({
   selector: '[appReduceApiCalls]'
@@ -14,7 +16,14 @@ export class ReduceApiCallsDirective {
   private subscription_inputs: Subscription;
   private subscription_first_reset: Subscription;
   private first = true;
-  constructor() { }
+
+  private sleepTime;
+  private resetTime;
+
+  constructor(public appConfig: AppConfigService) {
+    this.sleepTime = 1000/this.appConfig.getConfig().apiUrl;
+    this.resetTime = this.sleepTime * 1.5;
+  }
 
   resetFirst(event){
     this.first = true;
@@ -22,10 +31,10 @@ export class ReduceApiCallsDirective {
 
   ngOnInit() {
     this.subscription_inputs = this.inputs.pipe(
-      auditTime(300)
+      auditTime(this.sleepTime)
     ).subscribe(e => this.auditInput.emit(e));
     this.subscription_first_reset = this.first_reset.pipe(
-      debounceTime(500)
+      debounceTime(this.resetTime)
     ).subscribe(e => this.resetFirst(e));
   }
 
