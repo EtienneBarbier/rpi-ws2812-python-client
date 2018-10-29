@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../environments/environment';
 import { AppConfigService } from '../app-config.service'
+import { AppStateService } from '../app-state.service'
+
 
 
 
@@ -13,26 +15,18 @@ import { AppConfigService } from '../app-config.service'
 })
 export class PowerComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient,public snackBar: MatSnackBar, public appConfig: AppConfigService) {
+  constructor(private httpClient: HttpClient,public snackBar: MatSnackBar, public appConfig: AppConfigService, public appState: AppStateService) {
 
   }
   mySwitch: boolean = false;
 
 
   ngOnInit() {
-    this.httpClient.get(this.appConfig.getConfig().apiUrl+'/state').subscribe(
-      (result) => {
-        console.log(result["power"]);
-        if(result["power"] == 'stopped'){
-          this.mySwitch = false;
-        }else{
-          this.mySwitch = true;
-        }
-      },
-      (error) => {
-        console.log('Erreur ! : ' + error);
-      }
-    );
+    if(this.appState.getState().power == 'stopped'){
+      this.mySwitch = false;
+    }else{
+      this.mySwitch = true;
+    }
   }
 
 

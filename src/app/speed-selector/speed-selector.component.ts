@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { AppConfigService } from '../app-config.service'
+import { AppStateService } from '../app-state.service'
+
 
 
 @Component({
@@ -11,25 +13,18 @@ import { AppConfigService } from '../app-config.service'
 })
 export class SpeedSelectorComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient, public appConfig: AppConfigService) { }
+  constructor(private httpClient: HttpClient, public appConfig: AppConfigService, public appState: AppStateService) { }
 
   speed: any = 0;
 
 
   ngOnInit() {
-    this.httpClient.get(this.appConfig.getConfig().apiUrl+'/settings').subscribe(
-      (result) => {
-        this.speed = result["speed"];
-      },
-      (error) => {
-        console.log('Erreur ! : ' + error);
-      }
-    );
+    this.speed = this.appState.getState().speed;
   }
 
   OnChange(event){
-    console.log((event.value-100)/16);
-    console.log(event.value);
+    // console.log((event.value-100)/16);
+    // console.log(event.value);
     this.httpClient.post(this.appConfig.getConfig().apiUrl+'/settings', { speed: event.value }).subscribe(
       () => {
       },

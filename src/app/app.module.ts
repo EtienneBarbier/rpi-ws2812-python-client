@@ -19,10 +19,13 @@ import { ReduceApiCallsDirective } from './reduce-api-calls.directive';
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
 
 import { AppConfigService } from './app-config.service';
+import { AppStateService } from './app-state.service';
 
-const appInitializerFn = (appConfig: AppConfigService) => {
+const appInitializerFn = (appConfig: AppConfigService, appState: AppStateService) => {
   return () => {
-    return appConfig.loadAppConfig();
+    return appConfig.loadAppConfig().then(() => {
+      return appState.loadAppState();
+    });
   };
 };
 
@@ -49,12 +52,19 @@ const appInitializerFn = (appConfig: AppConfigService) => {
   ],
   providers: [
     AppConfigService,
+    AppStateService,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFn,
       multi: true,
-      deps: [AppConfigService]
-    }
+      deps: [AppConfigService, AppStateService]
+    },
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: appInitializerStateFn,
+    //   multi: true,
+    //   deps: [AppStateService, AppConfigService]
+    // }
   ],
   bootstrap: [AppComponent]
 })
