@@ -21,7 +21,7 @@ export class ReduceApiCallsDirective {
   private resetTime;
 
   constructor(public appConfig: AppConfigService) {
-    this.sleepTime = 1000/this.appConfig.getConfig().apiUrl;
+    this.sleepTime = 1000/this.appConfig.getConfig().apiCallMaxFreq;
     this.resetTime = this.sleepTime * 1.5;
   }
 
