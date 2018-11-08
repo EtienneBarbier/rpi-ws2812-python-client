@@ -4,7 +4,7 @@
   <mat-toolbar-row>
     <span>{{ title }}</span>
   </mat-toolbar-row>
-  <mat-toolbar-row>
+  <mat-toolbar-row *ngIf="noError">
     <span class="power-spacer">
       <app-brightness-selector></app-brightness-selector>
     </span>
@@ -35,7 +35,7 @@
 
 
 
-<mat-tab-group mat-stretch-tabs class="main">
+<mat-tab-group *ngIf="!errors['error']" mat-stretch-tabs class="main">
   <mat-tab label="Color">
     <div class="panel-mat-tab">
       <app-color-selector></app-color-selector>
@@ -53,5 +53,19 @@
   <!-- <mat-tab label="Fourth"> Content 4 </mat-tab>
   <mat-tab label="Fiveth"> Content 5 </mat-tab> -->
 </mat-tab-group>
+
+
+<div *ngIf="errors['state']" class="error_display">
+  <h1>Oops</h1>
+  <p> Impossible de joindre l'api </p>
+</div>
+<div *ngIf="errors['url']" class="error_display">
+  <h1>Oops</h1>
+  <p> L'url de l'api n'est pas spécifié dans le fichier de configuration </p>
+</div>
+<div *ngIf="errors['config']" class="error_display">
+  <h1>Oops</h1>
+  <p> Impossible de lire le fichier de configuration </p>
+</div>
 
 <!-- <button mat-flat-button color="primary" (click)="OnButtonClick()">Start</button> -->

@@ -10,11 +10,20 @@ export class AppStateService {
   constructor(private http: HttpClient, public appConfig: AppConfigService) {}
 
   loadAppState() {
-    return this.http.get(this.appConfig.getConfig().apiUrl+'/settings')
-      .toPromise()
-      .then(data => {
-        this.appState = data;
-      });
+    if(this.appConfig.getConfig() != null && this.appConfig.getConfig().apiUrl != null){
+      return this.http.get(this.appConfig.getConfig().apiUrl+'/settings')
+        .toPromise()
+        .then(
+          (data) => {
+            this.appState = data;
+          },
+          (error) => {
+            this.appState = null;
+            console.log('Erreur ! : ' + error);
+          }
+      );
+    }
+
   }
 
   getState() {

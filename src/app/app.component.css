@@ -24,3 +24,11 @@ app-animation-list{
 app-speed-selector{
   margin: -30px;
 }
+
+
+.error_display{
+  margin-top: 50%;
+  margin-left: 2em;
+  margin-right: 2em;
+  text-align: center;
+}
