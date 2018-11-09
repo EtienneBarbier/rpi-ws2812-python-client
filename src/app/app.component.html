@@ -4,7 +4,7 @@
   <mat-toolbar-row>
     <span>{{ title }}</span>
   </mat-toolbar-row>
-  <mat-toolbar-row *ngIf="noError">
+  <mat-toolbar-row *ngIf="!errors['error']">
     <span class="power-spacer">
       <app-brightness-selector></app-brightness-selector>
     </span>

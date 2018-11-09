@@ -7,9 +7,16 @@
 </mat-form-field> -->
 
 <app-speed-selector></app-speed-selector>
-<div fxLayout='row wrap' fxLayoutAlign="start stretch" class="animation-card-list">
-  <div fxFlex="25" *ngFor="let animation of animations">
-    <mat-card  class="animation-card mat-elevation-z6">
+<!-- <div fxLayout='row wrap' fxLayoutAlign="start stretch" class="animation-card-list">
+  <div fxFlex="25" *ngFor="let animation of animations"> -->
+<div
+  fxLayout='row wrap'
+  fxLayoutGap="40px"
+  fxLayout.lt-sm="column"
+  fxLayoutAlign="flex-start"
+  class="animation-card-list">
+  <ng-container  *ngFor="let animation of animations">
+    <mat-card fxFlex="0 1 calc(25% - 40px)" fxFlex.lt-md="0 1 calc(50% - 40px)" fxFlex.lt-sm="100%" class="animation-card mat-elevation-z6">
       <mat-card-header>
         <mat-card-title>{{animation.viewValue}}</mat-card-title>
       </mat-card-header>
@@ -18,5 +25,5 @@
         <button mat-flat-button (click)="OnPlayButtonClick($event,animation)">Play</button>
       </mat-card-actions>
     </mat-card>
-  </div>
+  </ng-container>
 <div>

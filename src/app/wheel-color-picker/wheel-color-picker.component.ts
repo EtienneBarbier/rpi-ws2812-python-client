@@ -1,6 +1,5 @@
 import { forwardRef, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, Component } from '@angular/core';
 import iro from '@jaames/iro';
-import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -35,7 +34,7 @@ export class WheelColorPickerComponent implements AfterViewInit {
     if(color != undefined){
       this.color = color;
     }
-    if(demoColorPicker.color != undefined){
+    if(demoColorPicker != undefined && demoColorPicker.color != undefined){
       demoColorPicker.color.rgb =  { r: this.color[0], g: this.color[1], b: this.color[2] };
     }
   }
@@ -52,15 +51,9 @@ export class WheelColorPickerComponent implements AfterViewInit {
 
   // @ViewChild('color-picker-container') input: ElementRef;
 
-  constructor(private httpClient: HttpClient) {
+  constructor() {
     first_request = true;
-    demoColorPicker = new iro.ColorPicker("#color-picker-container", {
-      color: {r: 255, g: 255, b: 255},
-      borderWidth: 0,
-      sliderMargin: 24,
-      sliderHeight: 24,
-      removeSlider: true,
-    });
+
     // console.log(this.color);
 
 
@@ -73,6 +66,14 @@ export class WheelColorPickerComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(){
+    demoColorPicker = new iro.ColorPicker("#color-picker-container", {
+      color: {r: 255, g: 255, b: 255},
+      borderWidth: 0,
+      sliderMargin: 24,
+      sliderHeight: 24,
+      removeSlider: true,
+    });
+
     demoColorPicker.on("mount", () => {
       demoColorPicker.color.rgb =  { r: this.color[0], g: this.color[1], b: this.color[2] };
       $(".iro__marker__outer").remove();

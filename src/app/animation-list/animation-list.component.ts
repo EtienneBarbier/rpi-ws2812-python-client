@@ -22,6 +22,9 @@ export class AnimationListComponent implements OnInit {
     {value: 'rainbow', viewValue: 'Rainbow'},
     {value: 'rainbow_cycle', viewValue: 'Rainbow Cycle'},
     {value: 'all', viewValue: 'All'},
+    {value: 'all', viewValue: 'All'},
+    {value: 'all', viewValue: 'All'},
+
   ];
   constructor(private httpClient: HttpClient, public appConfig: AppConfigService) { }
 
