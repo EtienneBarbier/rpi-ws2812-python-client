@@ -35,12 +35,12 @@
 
 
 
-<mat-tab-group *ngIf="!errors['error']" mat-stretch-tabs class="main">
+<mat-tab-group [selectedIndex]="myIndex" (selectedTabChange)="OnTabChange($event)" *ngIf="!errors['error']" mat-stretch-tabs class="main">
   <mat-tab label="Color">
-    <div class="panel-mat-tab">
+    <ng-template class="panel-mat-tab" matTabContent>
       <app-color-selector></app-color-selector>
-    </div>
-    <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+    </ng-template>
   </mat-tab>
   <mat-tab label="Animations">
     <div class="panel-mat-tab">

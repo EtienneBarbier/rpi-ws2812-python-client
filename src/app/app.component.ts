@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { AppConfigService } from './app-config.service'
 import { AppStateService } from './app-state.service'
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-root',
@@ -12,11 +14,13 @@ export class AppComponent implements OnInit{
   title: string = "Application Name";
   public errors = {};
   noError: boolean = false;
+  myIndex: number = 0;
+  cookieIndex = 'UNKNOWN'
   // stateError: boolean = false;
   // configError: boolean = false;
   // urlError: boolean = false;
 
-  constructor(public appConfig: AppConfigService,public appState: AppStateService) {
+  constructor(public appConfig: AppConfigService,public appState: AppStateService, private cookieService: CookieService) {
   }
 
   errorsInit(){
@@ -34,5 +38,13 @@ export class AppComponent implements OnInit{
     if(!this.errors['config']){
       this.title = config.name;
     }
+    if(this.cookieService.check('tabIndex')){
+      this.myIndex = this.cookieService.get('tabIndex');
+    }
+  }
+
+
+  OnTabChange($event){
+    this.cookieService.set('tabIndex',$event.index);
   }
 }

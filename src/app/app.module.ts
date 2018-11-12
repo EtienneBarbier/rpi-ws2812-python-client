@@ -17,6 +17,7 @@ import { BrightnessSelectorComponent } from './brightness-selector/brightness-se
 import { SpeedSelectorComponent } from './speed-selector/speed-selector.component';
 import { ReduceApiCallsDirective } from './reduce-api-calls.directive';
 import { ColorSelectorComponent } from './color-selector/color-selector.component';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppConfigService } from './app-config.service';
 import { AppStateService } from './app-state.service';
@@ -53,6 +54,7 @@ const appInitializerFn = (appConfig: AppConfigService, appState: AppStateService
   providers: [
     AppConfigService,
     AppStateService,
+    CookieService,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFn,
