@@ -39,7 +39,7 @@ export class AppComponent implements OnInit{
       this.title = config.name;
     }
     if(this.cookieService.check('tabIndex')){
-      this.myIndex = this.cookieService.get('tabIndex');
+      this.myIndex = Number(this.cookieService.get('tabIndex'));
     }
   }
 

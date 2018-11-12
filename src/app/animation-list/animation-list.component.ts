@@ -21,10 +21,8 @@ export class AnimationListComponent implements OnInit {
     {value: 'theater_chase_rainbow', viewValue: 'Theater Chase Rainbow'},
     {value: 'rainbow', viewValue: 'Rainbow'},
     {value: 'rainbow_cycle', viewValue: 'Rainbow Cycle'},
+    {value: 'rainbow_random', viewValue: 'Rainbow Random'},
     {value: 'all', viewValue: 'All'},
-    {value: 'all', viewValue: 'All'},
-    {value: 'all', viewValue: 'All'},
-
   ];
   constructor(private httpClient: HttpClient, public appConfig: AppConfigService) { }
 
@@ -34,7 +32,7 @@ export class AnimationListComponent implements OnInit {
   OnPlayButtonClick(event,animation){
     console.log(animation);
 
-    this.httpClient.get(this.appConfig.getConfig().apiUrl+'/annimation?id='+animation.value).subscribe(
+    this.httpClient.post(this.appConfig.getConfig().apiUrl+'/annimation', { id :animation.value }).subscribe(
       () => {
 
       },
