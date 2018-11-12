@@ -12,6 +12,8 @@ const COLOR_PICKER_VALUE_ACCESSOR = {
 declare var jquery:any;
 declare var $ :any;
 
+var editStyle: boolean;
+
 var demoColorPicker: any;
 
 var first_request: boolean;
@@ -35,6 +37,8 @@ export class WheelColorPickerComponent implements AfterViewInit {
       this.color = color;
     }
     if(demoColorPicker != undefined && demoColorPicker.color != undefined){
+      this.editStyle();
+      first_request = false;
       demoColorPicker.color.rgb =  { r: this.color[0], g: this.color[1], b: this.color[2] };
     }
   }
@@ -53,6 +57,7 @@ export class WheelColorPickerComponent implements AfterViewInit {
 
   constructor() {
     first_request = true;
+    editStyle = false;
 
     // console.log(this.color);
 
@@ -63,6 +68,17 @@ export class WheelColorPickerComponent implements AfterViewInit {
 
   ngOnInit() {
 
+  }
+
+  editStyle(){
+    if(!editStyle){
+      $(".iro__marker__outer").remove();
+      $(".iro__marker__inner").attr("fill",'white');
+      $(".iro__marker__inner").attr("stroke", 'black');
+      $(".iro__slider").attr("display",'none');
+      $(".iro__slider").attr("visibility", 'hidden');
+      $("#color-picker-container").children().first().attr("style","touch-action: inherit; display: block;");
+    }
   }
 
   ngAfterViewInit(){
@@ -76,14 +92,7 @@ export class WheelColorPickerComponent implements AfterViewInit {
 
     demoColorPicker.on("mount", () => {
       demoColorPicker.color.rgb =  { r: this.color[0], g: this.color[1], b: this.color[2] };
-      $(".iro__marker__outer").remove();
-      $(".iro__marker__inner").attr("fill",'white');
-      $(".iro__marker__inner").attr("stroke", 'black');
-      $(".iro__slider").attr("display",'none');
-      $(".iro__slider").attr("visibility", 'hidden');
-      $("#color-picker-container").children().first().attr("style","touch-action: inherit; display: block;");
-      // console.log(jquery(this.input.nativeElement))
-
+      this.editStyle();
     });
 
     demoColorPicker.on("color:change", (color, changes) => {
