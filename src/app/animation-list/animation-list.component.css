@@ -1,9 +1,7 @@
 .animation-card{
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin: 20px;
 }
 
 .animation-card-list{
-  margin-left: 40px;
   text-align: center;
 }
