@@ -18,7 +18,7 @@ export interface Animation {
 })
 export class AnimationListComponent implements OnInit {
 
-  annimations: Animation[] = null;
+  animations: Animation[] = null;
   // animations: Animation[] = [
   //   {value: 'theater_chase_rainbow', viewValue: 'Theater Chase Rainbow'},
   //   {value: 'rainbow', viewValue: 'Rainbow'},
@@ -31,7 +31,7 @@ export class AnimationListComponent implements OnInit {
   ngOnInit() {
     this.httpClient.get(this.appConfig.getConfig().apiUrl+'/annimation').subscribe(
       (data) => {
-        this.animations = data;
+        this.animations = <Animation[]>data;
       },
       (error) => {
         console.log('Erreur ! : ' + error);

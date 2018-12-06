@@ -21,7 +21,7 @@ export class AppStateService {
             this.appState = null;
             console.log('Erreur ! : ' + error);
           }
-      );
+        );
     }
 
   }
