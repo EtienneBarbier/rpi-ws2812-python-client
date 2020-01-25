@@ -9,9 +9,9 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-  title: string = "Application Name";
+  title: string = 'Application Name';
   public errors = {};
   noError: boolean = false;
   myIndex: number = 0;

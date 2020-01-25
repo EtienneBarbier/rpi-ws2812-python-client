@@ -1,5 +1,6 @@
 {
   "name": "SnowPi",
-  "apiUrl": "http://localhost:5000",
+  "apiAddr": "localhost",
+  "apiPort": 5000,
   "apiCallMaxFreq": 10
 }

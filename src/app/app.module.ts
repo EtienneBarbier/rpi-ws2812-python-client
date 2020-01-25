@@ -4,8 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatSlideToggleModule, MatSliderModule, MatFormFieldModule, MatOptionModule,
   MatSelectModule, MatTabsModule, MatSidenavModule, MatToolbarModule, MatDividerModule, MatIconModule,
   MatSnackBarModule, MatCardModule } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 
@@ -68,7 +68,7 @@ const appInitializerFn = (appConfig: AppConfigService, appState: AppStateService
     //   deps: [AppStateService, AppConfigService]
     // }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
 export class PizzaPartyAppModule { }

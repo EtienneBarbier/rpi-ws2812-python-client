@@ -19,6 +19,7 @@ export class AppStateService {
           },
           (error) => {
             this.appState = null;
+            console.log(this.appConfig.getConfig().apiUrl+'/settings');
             console.log('Erreur ! : ' + error);
           }
         );
