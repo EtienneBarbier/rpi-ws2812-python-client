@@ -31,6 +31,8 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { AppConfigService } from './app-config.service';
 import { AppStateService } from './app-state.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const appInitializerFn = (appConfig: AppConfigService, appState: AppStateService) => {
   return () => {
@@ -59,7 +61,8 @@ const appInitializerFn = (appConfig: AppConfigService, appState: AppStateService
     MatCardModule,
     HttpClientModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AppConfigService,
