@@ -1,8 +1,6 @@
 import { Directive, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
-import { auditTime } from 'rxjs/operators';
-import { debounceTime } from 'rxjs/operators';
+import { Subject ,  Subscription } from 'rxjs';
+import { auditTime ,  debounceTime } from 'rxjs/operators';
 import { AppConfigService } from './app-config.service'
 
 
